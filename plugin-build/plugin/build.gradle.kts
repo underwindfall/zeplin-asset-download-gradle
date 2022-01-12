@@ -8,7 +8,12 @@ plugins {
 
 dependencies {
     implementation(gradleApi())
-
+    implementation(Libs.COROUTINES_CORE)
+    implementation(Libs.RETROFIT_CORE)
+    implementation(Libs.RETROFIT_CONVERTER)
+    implementation(Libs.JSON_MOSHI)
+    compileOnly(AndroidTools.SDK_COMMON)
+    compileOnly(AndroidTools.COMMON)
     testImplementation(TestingLib.JUNIT)
 }
 
