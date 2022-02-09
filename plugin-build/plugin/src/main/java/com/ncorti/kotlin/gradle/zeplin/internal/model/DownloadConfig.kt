@@ -10,7 +10,7 @@ import com.squareup.moshi.JsonClass
 //    "outputDir": "",
 //    "prefix": "",
 //    "deniedList": { "screen_ids": [] },
-//    "whiteList": { "screen_ids": [] },
+//    "allowList": { "screen_ids": [] },
 //}
 @JsonClass(generateAdapter = true)
 data class DownloadConfig(
@@ -19,7 +19,7 @@ data class DownloadConfig(
     val output: String,
     val resourcePrefix: String,
     val deniedList: DeniedList,
-    val whiteList: WhiteList,
+    val allowList: AllowList,
 )
 
 /**
@@ -32,10 +32,10 @@ data class DeniedList(
 )
 
 /**
- * white list to include some screens from downloading task without importing assets
+ * allow list to include some screens from downloading task without importing assets
  */
 @JsonClass(generateAdapter = true)
-data class WhiteList(
+data class AllowList(
     @Json(name = "screen_ids")
     val screens: List<String>,
 )

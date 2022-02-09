@@ -2,6 +2,7 @@ object Versions {
     const val JUNIT = "4.13.2"
     const val COROUTINES = "1.6.0"
     const val RETROFIT = "2.9.0"
+    const val OKHTTP = "4.9.3"
     const val MOSHI = "1.13.0"
 }
 
@@ -18,6 +19,7 @@ object Libs {
     const val RETROFIT_CORE = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val RETROFIT_CONVERTER = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT}"
     const val JSON_MOSHI = "com.squareup.moshi:moshi:${Versions.MOSHI}"
+    const val OKHTTP_CORE = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
 }
 
 object AndroidTools {

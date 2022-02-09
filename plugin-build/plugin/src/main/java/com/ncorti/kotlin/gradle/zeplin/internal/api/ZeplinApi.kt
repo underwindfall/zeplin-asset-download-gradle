@@ -6,7 +6,6 @@ import com.ncorti.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -48,10 +47,7 @@ interface ZeplinApi {
         private const val VERSION = "v1"
         private const val ENDPOINT = "https://api.zeplin.dev/$VERSION/"
 
-        fun create(
-            okHttpClient: OkHttpClient,
-        ): ZeplinApi {
-            val contentType = "application/json".toMediaType()
+        fun create(okHttpClient: OkHttpClient): ZeplinApi {
             return Retrofit.Builder()
                 .baseUrl(ENDPOINT)
                 .validateEagerly(true)
