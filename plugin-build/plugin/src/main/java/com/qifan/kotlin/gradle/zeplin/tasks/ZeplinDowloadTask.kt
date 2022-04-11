@@ -1,15 +1,14 @@
-package com.ncorti.kotlin.gradle.zeplin.tasks
+package com.qifan.kotlin.gradle.zeplin.tasks
 
 import com.android.ide.common.vectordrawable.Svg2Vector
-import com.ncorti.kotlin.gradle.zeplin.internal.api.ZeplinApi
-import com.ncorti.kotlin.gradle.zeplin.internal.e
-import com.ncorti.kotlin.gradle.zeplin.internal.i
-import com.ncorti.kotlin.gradle.zeplin.internal.model.*
-import com.ncorti.kotlin.gradle.zeplin.internal.okhttp.downloadAssetAndSaveTo
-import com.ncorti.kotlin.gradle.zeplin.internal.w
+import com.qifan.kotlin.gradle.zeplin.internal.api.ZeplinApi
+import com.qifan.kotlin.gradle.zeplin.internal.error
+import com.qifan.kotlin.gradle.zeplin.internal.info
+import com.qifan.kotlin.gradle.zeplin.internal.model.*
+import com.qifan.kotlin.gradle.zeplin.internal.okhttp.downloadAssetAndSaveTo
+import com.qifan.kotlin.gradle.zeplin.internal.warn
 import kotlinx.coroutines.*
 import org.gradle.api.DefaultTask
-import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import java.io.File
 import javax.inject.Inject
@@ -26,9 +25,6 @@ abstract class ZeplinDowloadTask @Inject constructor(
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
-    @get:Input
-    abstract val token: String
 
     @TaskAction
     internal fun taskAction() {
@@ -49,13 +45,13 @@ abstract class ZeplinDowloadTask @Inject constructor(
             .map { it.id }
             .run { fetchScreenAssets(api = api, projectId = projectInfo.id, screenIds = this) }
             .flatMap { it.assets }
-        logger.i("Get Zeplin assets response $assets")
+        info("Get Zeplin assets response $assets")
         return assets
     }
 
     private suspend fun fetchZeplinProject(api: ZeplinApi, projectId: String): ZeplinProject {
         val projectInfo = api.getProjectInfo(projectId)
-        logger.w("Get Zeplin Project response $projectInfo")
+        warn("Get Zeplin Project response $projectInfo")
         return projectInfo
     }
 
@@ -72,11 +68,11 @@ abstract class ZeplinDowloadTask @Inject constructor(
                 }
                 page++
             }
-            logger.w("Get Zeplin screens response $screens")
+            warn("Get Zeplin screens response $screens")
             return screens
         } else {
             val screens = api.getAllScreens(projectInfo.id, projectInfo.numberOfScreens)
-            logger.w("Get Zeplin screens response $screens")
+            warn("Get Zeplin screens response $screens")
             return screens
         }
     }
@@ -102,8 +98,8 @@ abstract class ZeplinDowloadTask @Inject constructor(
                     outputName = "${config.resourcePrefix}_$assetName"
                 )
             }
-        logger.i("Assets download finished")
-        logger.i("Transforming svg to vector drawables.....")
+        info("Assets download finished")
+        info("Transforming svg to vector drawables.....")
         return svgFiles
     }
 
@@ -123,7 +119,7 @@ abstract class ZeplinDowloadTask @Inject constructor(
                     svg.delete()
                 }
         }
-        logger.i("Transforming complete.....")
+        info("Transforming complete.....")
     }
 
     private fun convertSvgToVectorDrawable(svgFile: File, output: File) {
@@ -132,12 +128,12 @@ abstract class ZeplinDowloadTask @Inject constructor(
             val errorMessage = Svg2Vector.parseSvgToXml(svgFile, outputStream)
             if (errorMessage != null && errorMessage.isNotEmpty()) {
                 outputStream.close()
-                logger.e("An error occurred while trying to convert ${svgFile.name} to vector drawable [$errorMessage]")
+                error("An error occurred while trying to convert ${svgFile.name} to vector drawable [$errorMessage]")
                 return
             }
         } catch (e: Exception) {
             outputStream.close()
-            logger.e("An error occurred while trying to convert ${svgFile.name} to a vector drawable [$e]")
+            error("An error occurred while trying to convert ${svgFile.name} to a vector drawable [$e]")
             return
         } finally {
             outputStream.close()

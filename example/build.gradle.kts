@@ -3,6 +3,6 @@ plugins {
 //    id("com.ncorti.kotlin.gradle.template.plugin")
 }
 
-//templateExampleConfig {
+// templateExampleConfig {
 //    message.set("Just trying this gradle plugin...")
-//}
+// }

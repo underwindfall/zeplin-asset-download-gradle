@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.gradle.zeplin.internal.okhttp
+package com.qifan.kotlin.gradle.zeplin.internal.okhttp
 
 import kotlinx.coroutines.*
 import okhttp3.*

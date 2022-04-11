@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.gradle.zeplin
+package com.qifan.kotlin.gradle.zeplin
 
 import org.gradle.api.Project
 import org.gradle.api.file.RegularFileProperty
@@ -18,7 +18,7 @@ class ZeplinDownloadExtension @Inject constructor(project: Project) {
 
     /**
      * --------------- MANDATORY to give some custom information for this plugin ----------------
-     * The configuration file for how downloading the Zeplin assets.
+     * The configuration file path for how downloading the Zeplin assets.
      */
-    val cofigFile: RegularFileProperty = objects.fileProperty()
+    val cofigFilePath: Property<String> = objects.property(String::class.java)
 }

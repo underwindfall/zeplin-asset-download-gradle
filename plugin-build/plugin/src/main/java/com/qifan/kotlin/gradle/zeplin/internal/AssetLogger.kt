@@ -1,14 +1,17 @@
-package com.ncorti.kotlin.gradle.zeplin.internal
+package com.qifan.kotlin.gradle.zeplin.internal
 
 import org.gradle.api.logging.Logger
 
+private const val PURPLE = "\u001B[35m"
 private const val YELLOW = "\u001B[33m"
 private const val RESET = "\u001B[0m"
 private const val RED = "\u001B[31m"
 private const val GREEN = "\u001B[32m"
 
-fun info(text: String) = println("$YELLOW  $text $RESET")
+fun info(text: String) = println("$PURPLE  $text $RESET")
+fun warn(text: String) = println("$YELLOW  $text $RESET")
 fun success(text: String) = println("$GREEN $text $RESET")
+fun error(text: String) = println("$RED $text $RESET")
 
 
 private const val TAG = "[Zeplin Asset Downloader]"

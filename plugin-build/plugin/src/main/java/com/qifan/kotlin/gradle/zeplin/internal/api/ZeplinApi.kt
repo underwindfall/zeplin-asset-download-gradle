@@ -1,8 +1,8 @@
-package com.ncorti.kotlin.gradle.zeplin.internal.api
+package com.qifan.kotlin.gradle.zeplin.internal.api
 
-import com.ncorti.kotlin.gradle.zeplin.internal.model.ZeplinProject
-import com.ncorti.kotlin.gradle.zeplin.internal.model.ZeplinScreen
-import com.ncorti.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinProject
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreen
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

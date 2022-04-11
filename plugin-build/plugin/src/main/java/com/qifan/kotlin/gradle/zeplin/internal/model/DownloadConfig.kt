@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.gradle.zeplin.internal.model
+package com.qifan.kotlin.gradle.zeplin.internal.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

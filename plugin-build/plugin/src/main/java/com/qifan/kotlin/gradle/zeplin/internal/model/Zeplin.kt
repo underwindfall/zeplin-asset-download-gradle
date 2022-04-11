@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.gradle.zeplin.internal.model
+package com.qifan.kotlin.gradle.zeplin.internal.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -21,9 +21,9 @@ data class ZeplinProject(
  */
 @JsonClass(generateAdapter = true)
 data class ZeplinAsset(
-    @Json(name="layer_source_id")
+    @Json(name = "layer_source_id")
     val id: String,
-    @Json(name="display_name")
+    @Json(name = "display_name")
     val name: String,
     val contents: List<ZeplinAssetContent>
 ) {
