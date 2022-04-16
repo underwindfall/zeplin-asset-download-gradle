@@ -1,7 +1,7 @@
 package com.qifan.kotlin.gradle.zeplin.internal.model
 
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 //configuration files to take into account when downloading tasks
 //{

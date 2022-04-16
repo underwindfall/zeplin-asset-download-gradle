@@ -1,12 +1,20 @@
 package com.qifan.kotlin.gradle.zeplin.internal.okhttp
 
-import kotlinx.coroutines.*
-import okhttp3.*
-import org.gradle.api.Project
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import org.gradle.api.Project
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 

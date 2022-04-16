@@ -21,7 +21,7 @@ data class ZeplinProject(
  */
 @Serializable
 data class ZeplinAsset(
-    @SerialName(value =  "layer_source_id")
+    @SerialName(value = "layer_source_id")
     val id: String,
     @SerialName(value = "display_name")
     val name: String,

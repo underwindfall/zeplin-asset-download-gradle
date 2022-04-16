@@ -49,6 +49,8 @@ interface ZeplinApi {
         private const val VERSION = "v1"
         private const val ENDPOINT = "https://api.zeplin.dev/$VERSION/"
 
+        internal const val PAGE_SIZE = 100
+
         fun create(okHttpClient: OkHttpClient, json: Json): ZeplinApi {
             val contentType = "application/json".toMediaType()
             return Retrofit.Builder()

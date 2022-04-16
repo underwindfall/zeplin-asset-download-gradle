@@ -21,7 +21,7 @@ const val TASK_NAME = "updateZeplin"
 
 abstract class ZeplinDownloadPlugin : Plugin<Project> {
     override fun apply(project: Project) {
-        val extension = project.extensions.create(EXTENSION_NAME, ZeplinDownloadExtension::class.java, project)
+        val extension = project.extensions.create(EXTENSION_NAME, ZeplinDownloadExtension::class.java, "Zeplin")
         project.afterEvaluate {
             val json = Json { ignoreUnknownKeys = true }
             val okHttpClient = newOkHttpClient(extension.zeplinToken.get())
