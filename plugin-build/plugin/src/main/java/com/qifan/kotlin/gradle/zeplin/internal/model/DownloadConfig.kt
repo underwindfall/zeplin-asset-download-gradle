@@ -1,7 +1,7 @@
 package com.qifan.kotlin.gradle.zeplin.internal.model
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
 
 //configuration files to take into account when downloading tasks
 //{
@@ -12,7 +12,7 @@ import com.squareup.moshi.JsonClass
 //    "deniedList": { "screen_ids": [] },
 //    "allowList": { "screen_ids": [] },
 //}
-@JsonClass(generateAdapter = true)
+@Serializable
 data class DownloadConfig(
     val projectId: String,
     val tagName: List<String>,
@@ -25,17 +25,17 @@ data class DownloadConfig(
 /**
  * denied list to exclude some screens from downloading task without importing assets
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class DeniedList(
-    @Json(name = "screen_ids")
+    @SerialName(value =  "screen_ids")
     val screens: List<String>,
 )
 
 /**
  * allow list to include some screens from downloading task without importing assets
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class AllowList(
-    @Json(name = "screen_ids")
+    @SerialName(value =  "screen_ids")
     val screens: List<String>,
 )

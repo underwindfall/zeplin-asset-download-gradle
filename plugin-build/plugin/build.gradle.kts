@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
+    kotlin("plugin.serialization")
     id("java-gradle-plugin")
     id("com.gradle.plugin-publish")
 }
@@ -12,7 +13,7 @@ dependencies {
     implementation(Libs.RETROFIT_CORE)
     implementation(Libs.RETROFIT_CONVERTER)
     implementation(Libs.OKHTTP_CORE)
-    implementation(Libs.JSON_MOSHI)
+    implementation(Libs.JSON)
     compileOnly(AndroidTools.SDK_COMMON)
     compileOnly(AndroidTools.COMMON)
     testImplementation(TestingLib.JUNIT)
@@ -50,11 +51,11 @@ pluginBundle {
         }
     }
 
-    mavenCoordinates {
-        groupId = PluginCoordinates.GROUP
-        artifactId = PluginCoordinates.ID
-        version = PluginCoordinates.VERSION
-    }
+//    mavenCoordinates {
+//        groupId = PluginCoordinates.GROUP
+//        artifactId = PluginCoordinates.ID
+//        version = PluginCoordinates.VERSION
+//    }
 }
 
 tasks.create("setupPluginUploadFromEnvironment") {
