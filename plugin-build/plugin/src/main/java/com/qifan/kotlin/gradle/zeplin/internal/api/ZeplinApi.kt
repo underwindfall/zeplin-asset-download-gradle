@@ -1,11 +1,13 @@
-package com.ncorti.kotlin.gradle.zeplin.internal.api
+package com.qifan.kotlin.gradle.zeplin.internal.api
 
-import com.ncorti.kotlin.gradle.zeplin.internal.model.ZeplinProject
-import com.ncorti.kotlin.gradle.zeplin.internal.model.ZeplinScreen
-import com.ncorti.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinProject
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreen
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -47,12 +49,15 @@ interface ZeplinApi {
         private const val VERSION = "v1"
         private const val ENDPOINT = "https://api.zeplin.dev/$VERSION/"
 
-        fun create(okHttpClient: OkHttpClient): ZeplinApi {
+        internal const val PAGE_SIZE = 100
+
+        fun create(okHttpClient: OkHttpClient, json: Json): ZeplinApi {
+            val contentType = "application/json".toMediaType()
             return Retrofit.Builder()
                 .baseUrl(ENDPOINT)
                 .validateEagerly(true)
                 .client(okHttpClient)
-                .addConverterFactory(MoshiConverterFactory.create())
+                .addConverterFactory(json.asConverterFactory(contentType))
                 .build()
                 .create(ZeplinApi::class.java)
         }

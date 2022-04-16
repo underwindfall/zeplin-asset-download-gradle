@@ -4,6 +4,7 @@ import io.gitlab.arturbosch.detekt.Detekt
 plugins {
     kotlin("jvm") version BuildPluginsVersion.KOTLIN apply false
     id("com.gradle.plugin-publish") version BuildPluginsVersion.PLUGIN_PUBLISH apply false
+    kotlin("plugin.serialization") version BuildPluginsVersion.KOTLIN apply false
     id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
     id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
     id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN

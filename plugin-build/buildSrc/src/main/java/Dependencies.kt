@@ -3,7 +3,7 @@ object Versions {
     const val COROUTINES = "1.6.0"
     const val RETROFIT = "2.9.0"
     const val OKHTTP = "4.9.3"
-    const val MOSHI = "1.13.0"
+    const val SERIALIZATION = "1.3.2"
 }
 
 object BuildPluginsVersion {
@@ -17,9 +17,9 @@ object BuildPluginsVersion {
 object Libs {
     const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
     const val RETROFIT_CORE = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
-    const val RETROFIT_CONVERTER = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT}"
-    const val JSON_MOSHI = "com.squareup.moshi:moshi:${Versions.MOSHI}"
+    const val RETROFIT_CONVERTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
     const val OKHTTP_CORE = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
+    const val JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.SERIALIZATION}"
 }
 
 object AndroidTools {

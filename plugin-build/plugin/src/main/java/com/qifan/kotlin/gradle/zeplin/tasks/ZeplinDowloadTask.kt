@@ -1,18 +1,29 @@
-package com.ncorti.kotlin.gradle.zeplin.tasks
+package com.qifan.kotlin.gradle.zeplin.tasks
 
-import com.android.ide.common.vectordrawable.Svg2Vector
-import com.ncorti.kotlin.gradle.zeplin.internal.api.ZeplinApi
-import com.ncorti.kotlin.gradle.zeplin.internal.e
-import com.ncorti.kotlin.gradle.zeplin.internal.i
-import com.ncorti.kotlin.gradle.zeplin.internal.model.*
-import com.ncorti.kotlin.gradle.zeplin.internal.okhttp.downloadAssetAndSaveTo
-import com.ncorti.kotlin.gradle.zeplin.internal.w
-import kotlinx.coroutines.*
-import org.gradle.api.DefaultTask
-import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.TaskAction
+import com.qifan.kotlin.gradle.zeplin.internal.api.ZeplinApi
+import com.qifan.kotlin.gradle.zeplin.internal.info
+import com.qifan.kotlin.gradle.zeplin.internal.model.AllowList
+import com.qifan.kotlin.gradle.zeplin.internal.model.DeniedList
+import com.qifan.kotlin.gradle.zeplin.internal.model.DownloadConfig
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinAsset
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinProject
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreen
+import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
+import com.qifan.kotlin.gradle.zeplin.internal.okhttp.downloadAssetAndSaveTo
+import com.qifan.kotlin.gradle.zeplin.internal.warn
 import java.io.File
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.TaskAction
 
 /**
  * Update assets from zeplin.
@@ -26,9 +37,6 @@ abstract class ZeplinDowloadTask @Inject constructor(
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
-    @get:Input
-    abstract val token: String
 
     @TaskAction
     internal fun taskAction() {
@@ -49,18 +57,18 @@ abstract class ZeplinDowloadTask @Inject constructor(
             .map { it.id }
             .run { fetchScreenAssets(api = api, projectId = projectInfo.id, screenIds = this) }
             .flatMap { it.assets }
-        logger.i("Get Zeplin assets response $assets")
+        info("Get Zeplin assets response $assets")
         return assets
     }
 
     private suspend fun fetchZeplinProject(api: ZeplinApi, projectId: String): ZeplinProject {
         val projectInfo = api.getProjectInfo(projectId)
-        logger.w("Get Zeplin Project response $projectInfo")
+        warn("Get Zeplin Project response $projectInfo")
         return projectInfo
     }
 
     private suspend fun fetchAllScreens(api: ZeplinApi, projectInfo: ZeplinProject): List<ZeplinScreen> {
-        val pageSize = 100
+        val pageSize = ZeplinApi.PAGE_SIZE
         if (projectInfo.numberOfScreens >= pageSize) {
             val screens = mutableListOf<ZeplinScreen>()
             var page = 1
@@ -72,11 +80,11 @@ abstract class ZeplinDowloadTask @Inject constructor(
                 }
                 page++
             }
-            logger.w("Get Zeplin screens response $screens")
+            warn("Get Zeplin screens response $screens")
             return screens
         } else {
             val screens = api.getAllScreens(projectInfo.id, projectInfo.numberOfScreens)
-            logger.w("Get Zeplin screens response $screens")
+            warn("Get Zeplin screens response $screens")
             return screens
         }
     }
@@ -102,45 +110,46 @@ abstract class ZeplinDowloadTask @Inject constructor(
                     outputName = "${config.resourcePrefix}_$assetName"
                 )
             }
-        logger.i("Assets download finished")
-        logger.i("Transforming svg to vector drawables.....")
+        info("Assets download finished")
+        info("Transforming svg to vector drawables.....")
         return svgFiles
     }
 
-    private fun transformAssets(files: List<File>) {
-        runBlocking {
-            files
-                .onEach { svg ->
-                    val name = svg.nameWithoutExtension.substringAfterLast("/")
-                    val output = File("${config.output}/drawable/$name.xml")
-                    if (output.exists().not()) {
-                        output.parentFile.mkdirs()
-                        output.createNewFile()
-                    }
-                    convertSvgToVectorDrawable(svg, output)
-                }
-                .forEach { svg ->
-                    svg.delete()
-                }
-        }
-        logger.i("Transforming complete.....")
-    }
+    ///TODO
+//    private fun transformAssets(files: List<File>) {
+//        runBlocking {
+//            files
+//                .onEach { svg ->
+//                    val name = svg.nameWithoutExtension.substringAfterLast("/")
+//                    val output = File("${config.outputDir}/drawable/$name.xml")
+//                    if (output.exists().not()) {
+//                        output.parentFile.mkdirs()
+//                        output.createNewFile()
+//                    }
+//                    convertSvgToVectorDrawable(svg, output)
+//                }
+//                .forEach { svg ->
+//                    svg.delete()
+//                }
+//        }
+//        info("Transforming complete.....")
+//    }
 
-    private fun convertSvgToVectorDrawable(svgFile: File, output: File) {
-        val outputStream = output.outputStream()
-        try {
-            val errorMessage = Svg2Vector.parseSvgToXml(svgFile, outputStream)
-            if (errorMessage != null && errorMessage.isNotEmpty()) {
-                outputStream.close()
-                logger.e("An error occurred while trying to convert ${svgFile.name} to vector drawable [$errorMessage]")
-                return
-            }
-        } catch (e: Exception) {
-            outputStream.close()
-            logger.e("An error occurred while trying to convert ${svgFile.name} to a vector drawable [$e]")
-            return
-        } finally {
-            outputStream.close()
-        }
-    }
+//    private fun convertSvgToVectorDrawable(svgFile: File, output: File) {
+//        val outputStream = output.outputStream()
+//        try {
+//            val errorMessage = Svg2Vector.parseSvgToXml(svgFile, outputStream)
+//            if (errorMessage != null && errorMessage.isNotEmpty()) {
+//                outputStream.close()
+//                error("An error occurred while trying to convert ${svgFile.name} to vector drawable [$errorMessage]")
+//                return
+//            }
+//        } catch (e: IOException) {
+//            outputStream.close()
+//            error("An error occurred while trying to convert ${svgFile.name} to a vector drawable [$e]")
+//            return
+//        } finally {
+//            outputStream.close()
+//        }
+//    }
 }

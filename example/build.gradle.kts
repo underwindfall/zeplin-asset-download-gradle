@@ -1,8 +1,9 @@
 plugins {
-    java
-//    id("com.ncorti.kotlin.gradle.template.plugin")
+    kotlin("jvm")
+    id("com.qifan.kotlin.gradle.zeplin")
 }
 
-//templateExampleConfig {
-//    message.set("Just trying this gradle plugin...")
-//}
+zeplinConfig {
+    zeplinToken.set("input your token here")
+    configFile.set(file("test.json"))
+}
