@@ -108,7 +108,7 @@ abstract class ZeplinDowloadTask @Inject constructor(
             files
                 .onEach { svg ->
                     val name = svg.nameWithoutExtension.substringAfterLast("/")
-                    val output = File("${config.output}/drawable/$name.xml")
+                    val output = File("${config.outputDir}/drawable/$name.xml")
                     if (output.exists().not()) {
                         output.parentFile.mkdirs()
                         output.createNewFile()

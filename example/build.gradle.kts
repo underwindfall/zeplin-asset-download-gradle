@@ -5,8 +5,6 @@ plugins {
 
 
 zeplinConfig {
-    zeplinToken.set("st")
-//    cofigFilePath.set("test.json")
+    zeplinToken.set("input your token here")
+    configFile.set(file("test.json"))
 }
-
-

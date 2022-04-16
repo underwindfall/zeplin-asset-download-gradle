@@ -8,7 +8,7 @@ import kotlinx.serialization.SerialName
 //    "projectId": "",
 //    "tagName": [],
 //    "outputDir": "",
-//    "prefix": "",
+//    "resourcePrefix": "",
 //    "deniedList": { "screen_ids": [] },
 //    "allowList": { "screen_ids": [] },
 //}
@@ -16,7 +16,7 @@ import kotlinx.serialization.SerialName
 data class DownloadConfig(
     val projectId: String,
     val tagName: List<String>,
-    val output: String,
+    val outputDir: String,
     val resourcePrefix: String,
     val deniedList: DeniedList,
     val allowList: AllowList,
@@ -27,7 +27,7 @@ data class DownloadConfig(
  */
 @Serializable
 data class DeniedList(
-    @SerialName(value =  "screen_ids")
+    @SerialName(value = "screen_ids")
     val screens: List<String>,
 )
 
@@ -36,6 +36,6 @@ data class DeniedList(
  */
 @Serializable
 data class AllowList(
-    @SerialName(value =  "screen_ids")
+    @SerialName(value = "screen_ids")
     val screens: List<String>,
 )

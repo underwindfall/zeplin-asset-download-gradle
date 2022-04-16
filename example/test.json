@@ -1,0 +1,12 @@
+{
+  "projectId": "",
+  "tagName": [],
+  "outputDir": "",
+  "resourcePrefix": "",
+  "deniedList": {
+    "screen_ids": []
+  },
+  "allowList": {
+    "screen_ids": []
+  }
+}
