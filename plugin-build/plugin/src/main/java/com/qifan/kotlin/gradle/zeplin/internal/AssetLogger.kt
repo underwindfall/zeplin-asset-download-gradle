@@ -13,7 +13,6 @@ fun warn(text: String) = println("$YELLOW  $text $RESET")
 fun success(text: String) = println("$GREEN $text $RESET")
 fun error(text: String) = println("$RED $text $RESET")
 
-
 private const val TAG = "[Zeplin Asset Downloader]"
 
 internal fun Logger.i(message: String) = this.info("$TAG $message")

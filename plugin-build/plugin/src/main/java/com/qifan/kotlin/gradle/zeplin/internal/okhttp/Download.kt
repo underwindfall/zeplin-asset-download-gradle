@@ -1,9 +1,5 @@
 package com.qifan.kotlin.gradle.zeplin.internal.okhttp
 
-import java.io.File
-import java.io.IOException
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -15,9 +11,12 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import org.gradle.api.Project
+import java.io.File
+import java.io.IOException
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-
 
 /**
  * generate a new http client
@@ -39,14 +38,13 @@ private class OAuthInterceptor(private val token: String) : Interceptor {
         var request = chain.request()
         val newBuilder = request.newBuilder()
         newBuilder.header("Accept", "application/json")
-        //write current token to request
+        // write current token to request
         newBuilder.header("Authorization", "Bearer $token")
 
-        request = newBuilder.build() //overwrite old request
+        request = newBuilder.build() // overwrite old request
         return chain.proceed(request)
     }
 }
-
 
 /**
  * schedule thread

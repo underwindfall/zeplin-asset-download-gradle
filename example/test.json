@@ -1,12 +1,12 @@
 {
-  "projectId": "",
+  "projectId": "61ddfd212566eb2deaecd8d7",
   "tagName": [],
-  "outputDir": "",
-  "resourcePrefix": "",
+  "outputDir": "example/src/main/res",
+  "resourcePrefix": "test_",
   "deniedList": {
     "screen_ids": []
   },
   "allowList": {
-    "screen_ids": []
+    "screen_ids": ["625f130e16e5d2124421e837","625f14f91c995d1695fe979d"]
   }
 }
