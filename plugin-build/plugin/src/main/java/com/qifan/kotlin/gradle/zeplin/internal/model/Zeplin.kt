@@ -14,7 +14,6 @@ data class ZeplinProject(
     @SerialName(value = "number_of_screens") val numberOfScreens: Int
 )
 
-
 /**
  * Zeplin screen used to convert response call from zeplin to our proper model.
  * The model is created based on [this documentation](https://docs.zeplin.dev/reference#asset)
@@ -59,7 +58,6 @@ data class ZeplinAssetContent(
         }
     }
 }
-
 
 /**
  * Zeplin screen used to convert response call from zeplin to our proper model.

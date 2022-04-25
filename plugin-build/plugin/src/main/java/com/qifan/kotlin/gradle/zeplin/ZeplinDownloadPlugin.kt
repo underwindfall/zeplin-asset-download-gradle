@@ -21,8 +21,13 @@ const val TASK_NAME = "updateZeplin"
 
 abstract class ZeplinDownloadPlugin : Plugin<Project> {
     override fun apply(project: Project) {
-        val extension = project.extensions.create(EXTENSION_NAME, ZeplinDownloadExtension::class.java, "Zeplin")
+        val extension = project.extensions.create(
+            EXTENSION_NAME,
+            ZeplinDownloadExtension::class.java,
+            "Zeplin"
+        )
         project.afterEvaluate {
+            it.checkAndroidPlugin()
             val json = Json { ignoreUnknownKeys = true }
             val okHttpClient = newOkHttpClient(extension.zeplinToken.get())
 
@@ -33,7 +38,10 @@ abstract class ZeplinDownloadPlugin : Plugin<Project> {
                 description = "Generate Android Assets from zeplin design files"
             }
             val updateAsset = project.tasks.create(
-                ZeplinDowloadTask::taskAction.name, ZeplinDowloadTask::class.java, zeplinApi, config
+                ZeplinDowloadTask::taskAction.name,
+                ZeplinDowloadTask::class.java,
+                zeplinApi,
+                config
             ).apply {
                 doFirst {
                     info("Updating assets...")
@@ -48,7 +56,6 @@ abstract class ZeplinDownloadPlugin : Plugin<Project> {
                 }
             }
         }
-
     }
 
     private fun Project.parseZeplinConfig(extension: ZeplinDownloadExtension, json: Json): DownloadConfig {
@@ -59,5 +66,11 @@ abstract class ZeplinDownloadPlugin : Plugin<Project> {
         }
         val jsonString = config.bufferedReader().use { it.readText() }
         return json.decodeFromString(jsonString)
+    }
+
+    private fun Project.checkAndroidPlugin() {
+        if (!(plugins.hasPlugin("com.android.library") || plugins.hasPlugin("com.android.application"))) {
+            throw IllegalStateException("This plugin must apply with android library or android application")
+        }
     }
 }

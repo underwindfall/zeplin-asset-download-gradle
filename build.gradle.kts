@@ -1,6 +1,17 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.gitlab.arturbosch.detekt.Detekt
 
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:7.0.4")
+    }
+}
+
 plugins {
     kotlin("jvm") version BuildPluginsVersion.KOTLIN apply false
     id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT

@@ -3,15 +3,15 @@ package com.qifan.kotlin.gradle.zeplin.internal.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-//configuration files to take into account when downloading tasks
-//{
+// configuration files to take into account when downloading tasks
+// {
 //    "projectId": "",
 //    "tagName": [],
 //    "outputDir": "",
 //    "resourcePrefix": "",
 //    "deniedList": { "screen_ids": [] },
 //    "allowList": { "screen_ids": [] },
-//}
+// }
 @Serializable
 data class DownloadConfig(
     val projectId: String,

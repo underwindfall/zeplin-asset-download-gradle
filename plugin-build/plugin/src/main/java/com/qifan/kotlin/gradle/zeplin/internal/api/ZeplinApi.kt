@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinProject
 import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreen
 import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -51,6 +52,7 @@ interface ZeplinApi {
 
         internal const val PAGE_SIZE = 100
 
+        @OptIn(ExperimentalSerializationApi::class)
         fun create(okHttpClient: OkHttpClient, json: Json): ZeplinApi {
             val contentType = "application/json".toMediaType()
             return Retrofit.Builder()
