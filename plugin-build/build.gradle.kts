@@ -8,6 +8,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
     id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
     id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN
+    id("com.diffplug.spotless") version BuildPluginsVersion.SPOTLESS
 }
 
 allprojects {
@@ -22,6 +23,7 @@ allprojects {
     apply {
         plugin("io.gitlab.arturbosch.detekt")
         plugin("org.jlleitschuh.gradle.ktlint")
+        from(rootProject.file("gradle/spotless-config.gradle"))
     }
 
     ktlint {
@@ -57,6 +59,6 @@ tasks.withType<DependencyUpdatesTask> {
 
 fun isNonStable(version: String) = "^[0-9,.v-]+(-r)?$".toRegex().matches(version).not()
 
-tasks.register("clean", Delete::class.java) {
-    delete(rootProject.buildDir)
-}
+//tasks.register("clean", Delete::class.java) {
+//    delete(rootProject.buildDir)
+//}
