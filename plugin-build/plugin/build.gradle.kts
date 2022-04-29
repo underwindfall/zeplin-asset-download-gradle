@@ -20,12 +20,13 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    kotlinOptions { jvmTarget = "1.8" }
 }
 
 gradlePlugin {
@@ -51,11 +52,11 @@ pluginBundle {
         }
     }
 
-//    mavenCoordinates {
-//        groupId = PluginCoordinates.GROUP
-//        artifactId = PluginCoordinates.ID
-//        version = PluginCoordinates.VERSION
-//    }
+    mavenCoordinates {
+        groupId = PluginCoordinates.GROUP
+        artifactId = PluginCoordinates.ID
+        version = PluginCoordinates.VERSION
+    }
 }
 
 tasks.create("setupPluginUploadFromEnvironment") {
