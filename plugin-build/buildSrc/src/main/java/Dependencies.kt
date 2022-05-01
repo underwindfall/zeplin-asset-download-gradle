@@ -10,7 +10,7 @@ object BuildPluginsVersion {
     const val DETEKT = "1.19.0"
     const val KOTLIN = "1.6.10"
     const val KTLINT = "10.0.0"
-    const val PLUGIN_PUBLISH = "0.14.0"
+    const val PLUGIN_PUBLISH = "0.18.0"
     const val VERSIONS_PLUGIN = "0.38.0"
     const val SPOTLESS = "6.5.0"
 }

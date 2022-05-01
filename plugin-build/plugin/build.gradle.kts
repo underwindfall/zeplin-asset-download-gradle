@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    `maven-publish`
     kotlin("jvm")
     kotlin("plugin.serialization")
     id("java-gradle-plugin")
@@ -29,12 +30,16 @@ tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions { jvmTarget = "1.8" }
 }
 
+group = PluginCoordinates.GROUP
+version = PluginCoordinates.VERSION
+
 gradlePlugin {
     plugins {
         create(PluginCoordinates.ID) {
             id = PluginCoordinates.ID
             displayName = PluginBundle.DISPLAY_NAME
             implementationClass = PluginCoordinates.IMPLEMENTATION_CLASS
+            description = PluginBundle.DESCRIPTION
             version = PluginCoordinates.VERSION
         }
     }
@@ -46,12 +51,6 @@ pluginBundle {
     vcsUrl = PluginBundle.VCS
     description = PluginBundle.DESCRIPTION
     tags = PluginBundle.TAGS
-
-    plugins {
-        getByName(PluginCoordinates.ID) {
-            displayName = PluginBundle.DISPLAY_NAME
-        }
-    }
 }
 
 tasks.create("setupPluginUploadFromEnvironment") {
