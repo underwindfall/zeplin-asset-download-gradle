@@ -1,6 +1,6 @@
 object PluginCoordinates {
     const val ID = "com.qifan.zeplin.gradle"
-    const val GROUP = "com.qifan.zeplin.gradle"
+    const val GROUP = "com.qifan"
     const val VERSION = "0.0.1"
     const val IMPLEMENTATION_CLASS = "com.qifan.zeplin.gradle.ZeplinDownloadPlugin"
 }
