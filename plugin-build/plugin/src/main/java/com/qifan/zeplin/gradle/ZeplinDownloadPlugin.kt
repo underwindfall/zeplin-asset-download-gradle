@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qifan.kotlin.gradle.zeplin
+package com.qifan.zeplin.gradle
 
-import com.qifan.kotlin.gradle.zeplin.internal.api.ZeplinApi
-import com.qifan.kotlin.gradle.zeplin.internal.error
-import com.qifan.kotlin.gradle.zeplin.internal.info
-import com.qifan.kotlin.gradle.zeplin.internal.model.DownloadConfig
-import com.qifan.kotlin.gradle.zeplin.internal.okhttp.newOkHttpClient
-import com.qifan.kotlin.gradle.zeplin.internal.success
-import com.qifan.kotlin.gradle.zeplin.tasks.ZeplinDowloadTask
+import com.qifan.zeplin.gradle.internal.api.ZeplinApi
+import com.qifan.zeplin.gradle.internal.error
+import com.qifan.zeplin.gradle.internal.info
+import com.qifan.zeplin.gradle.internal.model.DownloadConfig
+import com.qifan.zeplin.gradle.internal.okhttp.newOkHttpClient
+import com.qifan.zeplin.gradle.internal.success
+import com.qifan.zeplin.gradle.tasks.ZeplinDowloadTask
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.gradle.api.Plugin

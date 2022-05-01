@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qifan.kotlin.gradle.zeplin.internal
+package com.qifan.zeplin.gradle.internal
 
 import org.gradle.api.logging.Logger
 
