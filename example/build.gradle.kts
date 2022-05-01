@@ -1,6 +1,6 @@
 plugins {
     id("com.android.library")
-    id("com.qifan.kotlin.gradle.zeplin")
+    id("com.qifan.zeplin.gradle")
 }
 
 android {
@@ -18,6 +18,6 @@ android {
 }
 
 zeplinConfig {
-    zeplinToken.set("input your token here")
+    zeplinToken.set(System.getenv("ZEPLIN_TOKEN"))
     configFile.set(file("test.json"))
 }

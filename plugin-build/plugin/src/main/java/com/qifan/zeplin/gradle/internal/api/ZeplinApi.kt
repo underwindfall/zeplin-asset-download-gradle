@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qifan.kotlin.gradle.zeplin.internal.api
+package com.qifan.zeplin.gradle.internal.api
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinProject
-import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreen
-import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
+import com.qifan.zeplin.gradle.internal.model.ZeplinProject
+import com.qifan.zeplin.gradle.internal.model.ZeplinScreen
+import com.qifan.zeplin.gradle.internal.model.ZeplinScreenVersion
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType

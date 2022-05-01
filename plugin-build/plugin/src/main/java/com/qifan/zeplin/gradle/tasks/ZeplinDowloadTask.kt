@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qifan.kotlin.gradle.zeplin.tasks
+package com.qifan.zeplin.gradle.tasks
 
 import com.android.ide.common.vectordrawable.Svg2Vector
-import com.qifan.kotlin.gradle.zeplin.internal.api.ZeplinApi
-import com.qifan.kotlin.gradle.zeplin.internal.info
-import com.qifan.kotlin.gradle.zeplin.internal.model.AllowList
-import com.qifan.kotlin.gradle.zeplin.internal.model.DeniedList
-import com.qifan.kotlin.gradle.zeplin.internal.model.DownloadConfig
-import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinAsset
-import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinProject
-import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreen
-import com.qifan.kotlin.gradle.zeplin.internal.model.ZeplinScreenVersion
-import com.qifan.kotlin.gradle.zeplin.internal.okhttp.downloadAssetAndSaveTo
+import com.qifan.zeplin.gradle.internal.api.ZeplinApi
+import com.qifan.zeplin.gradle.internal.info
+import com.qifan.zeplin.gradle.internal.model.AllowList
+import com.qifan.zeplin.gradle.internal.model.DeniedList
+import com.qifan.zeplin.gradle.internal.model.DownloadConfig
+import com.qifan.zeplin.gradle.internal.model.ZeplinAsset
+import com.qifan.zeplin.gradle.internal.model.ZeplinProject
+import com.qifan.zeplin.gradle.internal.model.ZeplinScreen
+import com.qifan.zeplin.gradle.internal.model.ZeplinScreenVersion
+import com.qifan.zeplin.gradle.internal.okhttp.downloadAssetAndSaveTo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

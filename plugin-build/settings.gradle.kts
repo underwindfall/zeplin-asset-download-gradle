@@ -5,6 +5,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("com.qifan.kotlin.gradle.zeplin")
+rootProject.name = ("com.qifan.zeplin.gradle")
 
 include(":plugin")
