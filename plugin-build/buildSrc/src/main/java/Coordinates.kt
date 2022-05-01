@@ -11,10 +11,12 @@ object PluginBundle {
     const val DESCRIPTION = "A plugin used to download assets from zeplin and convert it to useful assets (vector-drawables) for android"
     const val DISPLAY_NAME = "ZeplinAssetDownloader"
     val TAGS = listOf(
+        "kotlin",
         "plugin",
         "gradle",
+        "download",
         "zeplin",
-        "vector-drawable",
+        "vector drawable",
         "svg converter"
     )
 }
