@@ -17,7 +17,8 @@ android {
     }
 }
 
+val token = System.getenv("ZEPLIN_TOKEN") ?: ""
 zeplinConfig {
-    zeplinToken.set(System.getenv("ZEPLIN_TOKEN"))
+    zeplinToken.set(token)
     configFile.set(file("test.json"))
 }
