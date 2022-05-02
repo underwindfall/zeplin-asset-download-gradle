@@ -1,4 +1,4 @@
-# zeplin-asset-download-gradle-plugin-template 🐘
+# zeplin-asset-download-gradle-plugin 🐘
 
 A simple gradle plugin that lets you create a **download asset from zeplin  and convert them to vector drawables automatically** 
 🐘 project using **100% Kotlin** and be up and running in a **few seconds**. 
