@@ -109,5 +109,5 @@ If you need to invoke a task inside the included build with:
 
 ## License 📄
 
-This template is licensed under the Apache License - see the [License](License) file for details.
+This template is licensed under the Apache License - see the [License](LICENSE) file for details.
 Please note that the generated template is offering to start with a MIT license but you can change it to whatever you wish, as long as you attribute under the MIT terms that you're using the template. 
