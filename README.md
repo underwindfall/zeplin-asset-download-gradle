@@ -13,7 +13,7 @@ try to add the plugin to the **project.gradle** you want to use,
    
     plugins {
         ...
-        id("io.github.qifan.zeplin.gradle")
+        id("io.github.underwindfall.zeplin.gradle")
     }
 
     zeplinConfig {
@@ -29,7 +29,7 @@ try to add the plugin to the **project.gradle** you want to use,
 
     plugins {
         ...
-        id("io.github.qifan.zeplin.gradle")
+        id("io.github.underwindfall.zeplin.gradle")
     }
 
     zeplinConfig {
