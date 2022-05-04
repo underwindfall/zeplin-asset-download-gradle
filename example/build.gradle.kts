@@ -1,6 +1,6 @@
 plugins {
     id("com.android.library")
-    id("io.github.qifan.zeplin.gradle")
+    id("io.github.underwindfall.zeplin.gradle")
 }
 
 android {
